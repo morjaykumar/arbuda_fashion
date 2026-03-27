@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const path = require('path');
 
 dotenv.config();
 
@@ -33,7 +34,7 @@ mongoose.connect(process.env.MONGODB_URI)
     });
 
 // Serve Static Files (Frontend)
-app.use(express.static('.'));
+app.use(express.static(path.join(__dirname, '..', 'frontend')));
 
 // Import Routes
 const authRoutes = require('./routes/auth');
