@@ -143,6 +143,7 @@ npm start
 
 **Development (with auto-reload):**
 ```bash
+node backend/server.js
 npm run dev
 ```
 
