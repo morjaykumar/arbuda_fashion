@@ -38,55 +38,52 @@ A full-stack e-commerce web application for **Arbuda Fashion**, built with **Nod
 ```
 project/
 │
-├── server.js              # Express server entry point
-├── middleware.js           # Auth middleware (protect, adminOnly)
+├── backend/
+│   ├── server.js          # Express server entry point
+│   ├── middleware.js      # Auth middleware (protect, adminOnly)
+│   ├── routes/            # Express API routes
+│   │   ├── auth.js        # Register, Login, Change Password
+│   │   ├── products.js    # CRUD operations for products
+│   │   ├── orders.js      # CRUD operations for orders + status updates + cancellation
+│   │   └── users.js       # CRUD operations for users + status toggle
+│   └── models/            # Mongoose schemas
+│       ├── User.js        # User model (name, email, username, password, role, etc.)
+│       ├── Product.js     # Product model (name, price, image, category, stock, etc.)
+│       └── Order.js       # Order model (orderId, product details, customer info, status)
+│
+├── frontend/
+│   ├── admin.html         # Admin dashboard (products & users management)
+│   ├── admin-simple.html  # Simplified admin view
+│   ├── admin.css          # Admin panel styles
+│   ├── admin.js           # Admin panel logic
+│   ├── admin-orders.html  # Admin order management page
+│   ├── admin-orders.js    # Admin order management logic
+│   ├── auth.css           # Shared auth form styles
+│   ├── auth.js            # Shared authentication utilities
+│   ├── bill.html          # Invoice / Bill page
+│   ├── bill.css           # Invoice styles
+│   ├── bill.js            # Invoice generation logic
+│   ├── index.html         # Homepage — Hero section + Product catalog + Purchase modal
+│   ├── index.css          # Homepage styles
+│   ├── index.js           # Homepage logic (product loading, filtering, ordering)
+│   ├── login.html         # Login page
+│   ├── login.css          # Login page styles
+│   ├── login.js           # Login page logic
+│   ├── profile.html       # User profile page
+│   ├── profile.css        # Profile page styles
+│   ├── profile.js         # Profile page logic (edit profile, view orders)
+│   ├── signup.html        # Registration page
+│   ├── signup.css         # Signup page styles
+│   ├── signup.js          # Signup page logic
+│   ├── bill.html          # Invoice page
+│   ├── bill.css           # Invoice page styles
+│   ├── bill.js            # Invoice logic
+│   ├── script.js          # Shared utility scripts
+│   ├── style.css          # Global / shared styles
+│   └── ...               # Additional frontend assets
+│
 ├── package.json           # Dependencies and scripts
 ├── .env                   # Environment variables (MongoDB URI, JWT secret, etc.)
-│
-├── models/                # Mongoose schemas
-│   ├── User.js            # User model (name, email, username, password, role, etc.)
-│   ├── Product.js         # Product model (name, price, image, category, stock, etc.)
-│   └── Order.js           # Order model (orderId, product details, customer info, status)
-│
-├── routes/                # Express API routes
-│   ├── auth.js            # Register, Login, Change Password
-│   ├── products.js        # CRUD operations for products
-│   ├── orders.js          # CRUD operations for orders + status updates + cancellation
-│   └── users.js           # CRUD operations for users + status toggle
-│
-├── index.html             # Homepage — Hero section + Product catalog + Purchase modal
-├── index.css              # Homepage styles
-├── index.js               # Homepage logic (product loading, filtering, ordering)
-├── script.js              # Shared utility scripts
-│
-├── login.html             # Login page
-├── login.css              # Login page styles
-├── login.js               # Login page logic
-│
-├── signup.html            # Registration page
-├── signup.css             # Signup page styles
-├── signup.js              # Signup page logic
-│
-├── profile.html           # User profile page
-├── profile.css            # Profile page styles
-├── profile.js             # Profile page logic (edit profile, view orders)
-│
-├── admin.html             # Admin dashboard (products & users management)
-├── admin-simple.html      # Simplified admin view
-├── admin.css              # Admin panel styles
-├── admin.js               # Admin panel logic
-│
-├── admin-orders.html      # Admin order management page
-├── admin-orders.js        # Admin order management logic
-│
-├── bill.html              # Invoice / Bill page
-├── bill.css               # Invoice styles
-├── bill.js                # Invoice generation logic
-│
-├── auth.css               # Shared auth form styles
-├── auth.js                # Shared authentication utilities
-├── style.css              # Global / shared styles
-│
 └── node_modules/          # Installed dependencies
 ```
 
@@ -149,12 +146,16 @@ npm start
 npm run dev
 ```
 
+The server entry point is now `backend/server.js`, and the frontend static files are served from the `frontend/` folder.
+
+> **Deployment note:** In production/Render, the frontend should use relative API paths (`/api/...`) instead of `http://localhost:5050`. This ensures the app works correctly when the backend is deployed on a real domain.
+
 ### 6. Open in Browser
 
 Navigate to:
 
 ```
-http://localhost:5000
+http://localhost:5050
 ```
 
 ---

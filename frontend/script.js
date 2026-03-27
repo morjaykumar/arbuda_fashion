@@ -1,7 +1,7 @@
 // ─── Global Configuration ─────────────────────────────────────────────────────
-window.API_BASE_URL = (window.location.protocol === 'http:' || window.location.protocol === 'https:')
-    ? '/api'
-    : 'http://localhost:5050/api';
+window.API_BASE_URL = window.location.protocol === 'file:'
+    ? 'http://localhost:5050/api'
+    : '/api';
 
 // ─── Run on every page load ───────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {

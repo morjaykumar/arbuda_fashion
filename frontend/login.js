@@ -3,7 +3,7 @@
  * Handles: Tab switching + Username login + Email login + OTP (Forgot Password) login
  */
 
-const API_BASE = 'http://localhost:5050/api';
+const API_BASE = window.location.protocol === 'file:' ? 'http://localhost:5050/api' : '/api';
 
 document.addEventListener('DOMContentLoaded', () => {
     redirectIfLoggedIn();

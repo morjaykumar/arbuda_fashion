@@ -3,7 +3,7 @@
  * Handles: User registration form
  */
 
-const API_BASE = 'http://localhost:5050/api';
+const API_BASE = window.location.protocol === 'file:' ? 'http://localhost:5050/api' : '/api';
 
 document.addEventListener('DOMContentLoaded', () => {
     redirectIfLoggedIn();
