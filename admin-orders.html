@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Arbuda Fashion - Admin Order Management">
+    <title>Admin Orders - Arbuda Fashion</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #333 100%);
+            color: white;
+            padding: 40px 0;
+            margin-bottom: 30px;
+        }
+
+        .page-header h1 {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .breadcrumb {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .breadcrumb a {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">Arbuda Admin</a>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="admin.html" class="nav-link">Dashboard</a></li>
+                    <li><a href="admin-orders.html" class="nav-link active">Orders</a></li>
+                    <li><a href="profile.html" class="nav-link">Account</a></li>
+                    <li><a href="#" id="logoutBtn" class="nav-link">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main style="padding-top: 80px;">
+        <div class="page-header">
+            <div class="container">
+                <h1>📦 Order Management</h1>
+                <p class="breadcrumb"><a href="admin.html">Admin</a> / Order Management</p>
+            </div>
+        </div>
+
+        <section class="section" style="padding-top: 0;">
+            <div class="container">
+                <div class="admin-card">
+                    <div
+                        style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:15px;">
+                        <h2 style="margin-bottom:0; border-bottom:none;">🛒 Customer Requests & Orders</h2>
+                        <div class="order-stats" style="margin-bottom:0; gap:10px;">
+                            <div class="stat-card" style="padding:10px 20px;">
+                                <h3 id="totalOrders" style="font-size:1.2rem;">—</h3>
+                                <p style="font-size:0.7rem;">Total</p>
+                            </div>
+                            <div class="stat-card warning" style="padding:10px 20px;">
+                                <h3 id="pendingOrders" style="font-size:1.2rem;">—</h3>
+                                <p style="font-size:0.7rem;">Pending</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Search & Filter Area -->
+                    <div
+                        style="background:#f8f9fa; padding:20px; border-radius:10px; margin-bottom:25px; border:1px solid #eee;">
+                        <div class="form-group" style="margin-bottom:15px;">
+                            <input type="text" id="orderSearch"
+                                placeholder="🔍 Search by Order ID, Name, Product or Status..."
+                                style="width:100%; border-radius:30px; padding:14px 25px; border:2px solid #eee;">
+                        </div>
+                        <div class="order-filter-bar" style="background:none; padding:0; margin-bottom:0;">
+                            <button type="button" class="order-filter-btn active" data-status="all">All</button>
+                            <button type="button" class="order-filter-btn" data-status="Pending">New Requests</button>
+                            <button type="button" class="order-filter-btn" data-status="Processing">Processing</button>
+                            <button type="button" class="order-filter-btn" data-status="Shipped">Shipped</button>
+                            <button type="button" class="order-filter-btn" data-status="Delivered">Delivered</button>
+                            <button type="button" class="order-filter-btn" data-status="Cancelled">Cancelled</button>
+                        </div>
+                    </div>
+
+                    <!-- Orders Table -->
+                    <div id="adminOrderList" class="order-table-container">
+                        <div class="empty-state">
+                            <p>Loading order data...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ── Order Details Modal ── -->
+    <div id="orderDetailsModal" class="modal" style="display:none; align-items:center; justify-content:center;">
+        <div class="modal-content"
+            style="max-width:850px; width:95%; max-height:90vh; overflow-y:auto; border-radius:15px;">
+            <span class="close-modal" id="closeOrderModal">&times;</span>
+            <h2 class="modal-title" style="font-family:var(--font-heading);">📋 Order Management Detail</h2>
+
+            <div class="modal-tabs">
+                <button type="button" class="modal-tab-btn active" onclick="switchModalTab('manage')">Manage
+                    Status</button>
+                <button type="button" class="modal-tab-btn" onclick="switchModalTab('details')">Information</button>
+            </div>
+
+            <div id="manageTab" class="modal-tab-panel active">
+                <div
+                    style="padding:25px; background:linear-gradient(to right, #fbfbfb, #fff); border:1px solid #eee; border-radius:12px;">
+                    <h3
+                        style="margin-bottom:20px; color:var(--primary-color); display:flex; align-items:center; gap:10px;">
+                        <span>⚙️</span> Update Status & Handle Request
+                    </h3>
+                    <div style="display:flex; gap:20px; align-items:flex-end; flex-wrap:wrap;">
+                        <div style="flex:1; min-width:250px;">
+                            <label
+                                style="display:block; margin-bottom:8px; font-weight:600; font-size:0.9rem; color:#666;">Select
+                                New Status:</label>
+                            <select id="orderStatusSelect"
+                                style="width:100%; padding:14px; border-radius:8px; border:2px solid #ddd; font-size:1rem; font-family:var(--font-body);">
+                                <option value="Pending">Pending (New Request)</option>
+                                <option value="Processing">Processing</option>
+                                <option value="Shipped">Shipped</option>
+                                <option value="Out for Delivery">Out for Delivery</option>
+                                <option value="Delivered">Delivered</option>
+                                <option value="Cancelled">Cancelled</option>
+                            </select>
+                        </div>
+                        <button type="button" id="updateStatusBtn" class="btn btn-primary"
+                            style="padding:15px 35px; border-radius:8px; font-weight:600; background:var(--primary-color);">
+                            💾 Update Order
+                        </button>
+                    </div>
+
+                    <div
+                        style="margin-top:30px; padding:20px; background:#fff; border:1px dashed var(--accent-color); border-radius:10px; text-align:center;">
+                        <p style="color:#666; margin-bottom:15px; font-weight:500;">Quick Actions & Document Generation:
+                        </p>
+                        <div style="display:flex; gap:15px; justify-content:center; flex-wrap:wrap;">
+                            <button type="button" class="btn" id="modalInvoiceBtn"
+                                style="background:#2ecc71; color:white; font-size:0.9rem;">🧾 Generate Invoice</button>
+                            <button type="button" class="btn" id="modalPackingBtn"
+                                style="background:#34495e; color:white; font-size:0.9rem;">📦 Packing Slip</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="detailsTab" class="modal-tab-panel">
+                <div id="orderDetailsContent" style="padding:10px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>&copy; 2024 Arbuda Fashion Admin. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="admin-orders.js"></script>
+</body>
+
+</html>

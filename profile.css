@@ -1,0 +1,214 @@
+/* Profile Page Styles */
+.profile-section {
+    padding: 80px 0;
+    min-height: 80vh;
+    background-color: var(--bg-light);
+    padding-top: 100px;
+}
+
+.profile-card {
+    background: var(--white);
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+.profile-avatar-container {
+    position: relative;
+    width: 100px;
+    margin: 0 auto 20px;
+}
+
+.profile-avatar {
+    width: 100px;
+    height: 100px;
+    background-color: var(--accent-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.edit-avatar-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: var(--accent-color);
+    color: white;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.edit-avatar-btn:hover {
+    transform: scale(1.1);
+}
+
+.profile-name {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+.profile-username {
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+}
+
+.profile-details {
+    text-align: left;
+    margin-bottom: 30px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #f9f9f9;
+}
+
+.detail-label {
+    font-weight: 600;
+    color: #555;
+    flex: 1;
+}
+
+.detail-value {
+    color: #333;
+    flex: 2;
+}
+
+.detail-input {
+    width: 100%;
+    padding: 8px;
+    font-size: 1rem;
+    color: #333;
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    transition: var(--transition);
+}
+
+.detail-input:not(:disabled) {
+    background: #fdfdfd;
+    border-bottom: 1px solid #ddd;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+    .profile-card {
+        padding: 25px;
+    }
+
+    .detail-row {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+
+/* Textarea in profile */
+textarea.detail-input {
+    resize: vertical;
+    min-height: 60px;
+    line-height: 1.5;
+}
+
+/* Profile section padding */
+.profile-section {
+    padding-top: 30px;
+    min-height: 80vh;
+    background-color: var(--bg-light);
+}
+
+/* Profile username badge spacing */
+.profile-username {
+    margin-bottom: 10px !important;
+}
+
+#profileRoleBadge {
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+/* ── Order Filter Bar ── */
+.order-filter-bar {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    background: #f5f5f5;
+    padding: 12px;
+    border-radius: 12px;
+}
+
+.order-filter-btn {
+    padding: 8px 18px;
+    border: none;
+    background: transparent;
+    color: #777;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.order-filter-btn:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: var(--primary-color);
+}
+
+.order-filter-btn.active {
+    background: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* ── Generic Button Polishing ── */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-family: inherit;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--accent-color);
+    color: white;
+}

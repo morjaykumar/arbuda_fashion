@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Arbuda Fashion - Admin Panel">
+    <title>Admin Panel - Arbuda Fashion</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">Arbuda Admin</a>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="admin.html" class="nav-link active">Dashboard</a></li>
+                    <li><a href="admin-orders.html" class="nav-link">Orders</a></li>
+                    <li><a href="profile.html" class="nav-link"> Account</a></li>
+                    <li><a href="#" id="logoutBtn" class="nav-link">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main style="padding-top: 80px;">
+        <section class="section" style="padding-top: 40px;">
+            <div class="container">
+                <h1 class="section-title">Admin Dashboard</h1>
+
+                <!-- ── Dashboard Stats ── -->
+                <div class="dashboard-stats-grid">
+                    <div class="stat-card">
+
+                        <h3 id="statTotalProducts">—</h3>
+                        <p>Total Products</p>
+                    </div>
+                    <div class="stat-card">
+
+                        <h3 id="statTotalOrders">—</h3>
+                        <p>Total Orders</p>
+                    </div>
+                    <div class="stat-card accent">
+
+                        <h3 id="statTotalRevenue">—</h3>
+                        <p>Total Revenue</p>
+                    </div>
+                    <div class="stat-card">
+
+                        <h3 id="statTotalUsers">—</h3>
+                        <p>Registered Users</p>
+                    </div>
+                    <div class="stat-card warning">
+
+                        <h3 id="statPendingOrders">—</h3>
+                        <p>Pending Orders</p>
+                    </div>
+                    <div class="stat-card success">
+
+                        <h3 id="statDelivered">—</h3>
+                        <p>Delivered</p>
+                    </div>
+                    <div class="stat-card danger">
+
+                        <h3 id="statLowStock">—</h3>
+                        <p>Low Stock Items</p>
+                    </div>
+                    <div class="stat-card danger">
+
+                        <h3 id="statOutOfStock">—</h3>
+                        <p>Out of Stock</p>
+                    </div>
+                </div>
+
+                <!-- ── Admin Tabs ── -->
+                <div class="admin-tabs-bar">
+                    <button type="button" class="admin-tab-btn active" data-tab="productsTab"> Products</button>
+                    <button type="button" class="admin-tab-btn" data-tab="ordersTab"> Orders</button>
+                    <button type="button" class="admin-tab-btn" data-tab="usersTab"> Users</button>
+                    <button type="button" class="admin-tab-btn" data-tab="analyticsTab"> Analytics</button>
+                </div>
+
+                <!-- ══════════════════════════════════════════════════════════ -->
+                <!-- PRODUCTS TAB                                               -->
+                <!-- ══════════════════════════════════════════════════════════ -->
+                <div id="productsTab" class="admin-tab-panel active">
+                    <div class="admin-container">
+
+                        <!-- Add / Edit Product Form -->
+                        <div class="admin-card">
+                            <h2 id="productFormTitle"> Add New Product</h2>
+                            <form id="addProductForm" class="admin-form">
+                                <div class="form-group">
+                                    <label for="productName">Product Name *</label>
+                                    <input type="text" id="productName" placeholder="e.g., Classic Silk Saree" required>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="productPrice">Price (₹) *</label>
+                                        <input type="number" id="productPrice" placeholder="e.g., 1499" min="0"
+                                            required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="productStock">Stock Qty *</label>
+                                        <input type="number" id="productStock" placeholder="e.g., 50" min="0" value="50"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="productCategory">Category *</label>
+                                    <select id="productCategory" required>
+                                        <option value="">— Select Category —</option>
+                                        <option value="men">Men's Fashion</option>
+                                        <option value="women">Women's Fashion</option>
+                                        <option value="kids">Kids' Fashion</option>
+                                        <option value="accessories">Accessories</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="productImage">Image URL</label>
+                                    <input type="text" id="productImage"
+                                        placeholder="https://... or leave blank for placeholder">
+                                </div>
+                                <div class="form-group">
+                                    <label for="productDesc">Description</label>
+                                    <textarea id="productDesc" rows="3"
+                                        placeholder="Brief product description..."></textarea>
+                                </div>
+                                <div style="display:flex; gap:10px;">
+                                    <button type="submit" class="btn btn-primary" style="flex:1;">Add Product</button>
+                                    <button type="button" id="cancelEditBtn" class="btn"
+                                        style="display:none; background:#666; color:white; flex:0 0 auto;">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Product List -->
+                        <div class="admin-card">
+                            <h2>📋 All Products</h2>
+                            <div style="margin-bottom: 15px; display: flex; justify-content: flex-end;">
+                                <button type="button" id="clearAllProductsBtn" class="delete-btn"
+                                    style="background:#666; font-size: 0.75rem;">🧹 Clear All Products</button>
+                            </div>
+                            <div id="adminProductList" class="product-list-compact">
+                                <p class="empty-state">Loading...</p>
+                            </div>
+                        </div>
+
+                        <!-- Most Demanded -->
+                        <div class="admin-card">
+                            <h2>🔥 Most Demanded</h2>
+                            <div id="mostDemandedList" class="product-list-compact">
+                                <p class="empty-state">No order data yet.</p>
+                            </div>
+                        </div>
+
+                        <!-- Low Stock Alert -->
+                        <div class="admin-card" style="grid-column: 1 / -1;">
+                            <h2>⚠️ Low Stock Alert <small style="font-size:0.8rem;color:#e74c3c;">(less than 5
+                                    units)</small></h2>
+                            <div id="lowStockList" class="product-list-compact">
+                                <p class="empty-state">✅ All products have sufficient stock.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- ══════════════════════════════════════════════════════════ -->
+                <!-- ORDERS TAB                                                 -->
+                <!-- ══════════════════════════════════════════════════════════ -->
+                <div id="ordersTab" class="admin-tab-panel">
+                    <div class="admin-card" style="margin-top:20px;">
+                        <div
+                            style="display:flex; justify-content:space-between; align-items:center; margin-bottom:25px; padding-bottom:15px; border-bottom:1px solid #eee;">
+                            <h2 style="margin-bottom:0; border-bottom:none;">🛒 Orders Overview</h2>
+                            <a href="admin-orders.html" class="btn btn-primary"
+                                style="padding:10px 25px; border-radius:30px; font-weight:600; box-shadow: 0 4px 15px rgba(201, 165, 92, 0.3);">
+                                ⚙️ Manage Orders
+                            </a>
+                        </div>
+
+                        <!-- Order Stats -->
+                        <div class="order-stats">
+                            <div class="stat-card">
+                                <h3 id="totalOrders">0</h3>
+                                <p>Total</p>
+                            </div>
+                            <div class="stat-card warning">
+                                <h3 id="pendingOrders">0</h3>
+                                <p>Pending</p>
+                            </div>
+                            <div class="stat-card success">
+                                <h3 id="completedOrders">0</h3>
+                                <p>Delivered</p>
+                            </div>
+                        </div>
+
+                        <!-- Search -->
+                        <div class="form-group" style="margin-top:20px;">
+                            <input type="text" id="orderSearch"
+                                placeholder="🔍 Search by Order ID, Customer, Product..."
+                                style="width:100%; padding:12px; border:1px solid #ddd; border-radius:8px; font-size:0.95rem;">
+                        </div>
+
+                        <!-- Filter Buttons -->
+                        <div class="order-filter-bar">
+                            <button type="button" class="order-filter-btn active" data-status="all">All</button>
+                            <button type="button" class="order-filter-btn" data-status="Pending">Pending</button>
+                            <button type="button" class="order-filter-btn" data-status="Processing">Processing</button>
+                            <button type="button" class="order-filter-btn" data-status="Shipped">Shipped</button>
+                            <button type="button" class="order-filter-btn" data-status="Out for Delivery">Out for
+                                Delivery</button>
+                            <button type="button" class="order-filter-btn" data-status="Delivered">Delivered</button>
+                            <button type="button" class="order-filter-btn" data-status="Cancelled">Cancelled</button>
+                        </div>
+
+                        <!-- Orders Table -->
+                        <div id="adminOrderList" class="order-table-container">
+                            <p class="empty-state">Loading orders...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ══════════════════════════════════════════════════════════ -->
+                <!-- USERS TAB                                                  -->
+                <!-- ══════════════════════════════════════════════════════════ -->
+                <div id="usersTab" class="admin-tab-panel">
+                    <div class="admin-card" style="margin-top:20px;">
+                        <h2>👥 User Management</h2>
+                        <div id="adminUserList" class="product-list-compact">
+                            <p class="empty-state">Loading users...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ══════════════════════════════════════════════════════════ -->
+                <!-- ANALYTICS TAB                                              -->
+                <!-- ══════════════════════════════════════════════════════════ -->
+                <div id="analyticsTab" class="admin-tab-panel">
+                    <div class="admin-card" style="margin-top:20px;">
+                        <h2>📊 Business Analytics</h2>
+                        <div class="dashboard-stats-grid" style="margin-top:20px;">
+                            <div class="stat-card accent">
+                                <div class="stat-icon">💰</div>
+                                <h3 id="statTotalRevenue2">—</h3>
+                                <p>Total Revenue</p>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">📦</div>
+                                <h3 id="statTotalProducts2">—</h3>
+                                <p>Products Listed</p>
+                            </div>
+                            <div class="stat-card success">
+                                <div class="stat-icon">✅</div>
+                                <h3 id="statDelivered2">—</h3>
+                                <p>Orders Delivered</p>
+                            </div>
+                            <div class="stat-card warning">
+                                <div class="stat-icon">⏳</div>
+                                <h3 id="statPendingOrders2">—</h3>
+                                <p>Orders Pending</p>
+                            </div>
+                        </div>
+                        <div
+                            style="margin-top:30px; padding:20px; background:#f9f9f9; border-radius:8px; text-align:center; color:#888;">
+                            <p style="font-size:1.1rem;">📈 Detailed charts coming soon!</p>
+                            <p style="margin-top:10px;">Check the Dashboard stats above for a quick overview.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- ── Order Details Modal ── -->
+    <div id="orderDetailsModal" class="modal" style="display:none; align-items:center; justify-content:center;">
+        <div class="modal-content" style="max-width:800px; width:95%; max-height:90vh; overflow-y:auto;">
+            <span class="close-modal" id="closeOrderModal">&times;</span>
+            <h2 class="modal-title">📋 Order Details</h2>
+
+            <div class="modal-tabs">
+                <button type="button" class="modal-tab-btn" onclick="switchModalTab('details')">Order Info</button>
+                <button type="button" class="modal-tab-btn active" onclick="switchModalTab('manage')">Manage
+                    Order</button>
+            </div>
+
+            <div id="detailsTab" class="modal-tab-panel">
+                <div id="orderDetailsContent"></div>
+            </div>
+
+            <div id="manageTab" class="modal-tab-panel active">
+                <div style="padding:20px; background:#f9f9f9; border-radius:8px;">
+                    <h3 style="margin-bottom:15px; color:var(--primary-color);">Update Order Status</h3>
+                    <div style="display:flex; gap:15px; align-items:flex-end; flex-wrap:wrap;">
+                        <div style="flex:1; min-width:200px;">
+                            <label style="display:block; margin-bottom:5px; font-weight:500;">New Status:</label>
+                            <select id="orderStatusSelect"
+                                style="width:100%; padding:12px; border-radius:6px; border:1px solid #ddd; font-size:1rem;">
+                                <option value="Pending">Pending</option>
+                                <option value="Processing">Processing</option>
+                                <option value="Shipped">Shipped</option>
+                                <option value="Out for Delivery">Out for Delivery</option>
+                                <option value="Delivered">Delivered</option>
+                                <option value="Cancelled">Cancelled</option>
+                            </select>
+                        </div>
+                        <button type="button" id="updateStatusBtn" class="btn btn-primary">💾 Save Status</button>
+                    </div>
+                </div>
+                <div
+                    style="margin-top:20px; padding:20px; border:1px dashed #ddd; border-radius:8px; text-align:center;">
+                    <p style="color:#888; margin-bottom:15px;">Generate documents for this order:</p>
+                    <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+                        <button type="button" class="btn btn-primary" onclick="createBill(currentOrderId, 'Invoice')"
+                            style="font-size:0.9rem;">🧾 Invoice</button>
+                        <button type="button" class="btn btn-primary"
+                            onclick="createBill(currentOrderId, 'Packing Slip')"
+                            style="font-size:0.9rem; background: #666;">📦 Packing Slip</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>&copy; 2024 Arbuda Fashion Admin. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="admin.js"></script>
+    <script>
+        // expose currentOrderId for inline bill button in modal
+        var currentOrderId = null;
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('orderDetailsModal').addEventListener('click', (e) => {
+                if (e.target === document.getElementById('orderDetailsModal')) {
+                    document.getElementById('orderDetailsModal').style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

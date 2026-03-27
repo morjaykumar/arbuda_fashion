@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arbuda Fashion | Timeless Style</title>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">Arbuda Fashion</a>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link active">Home</a></li>
+                    <li><a href="#shop" class="nav-link">Shop</a></li>
+                    <li id="adminNavLink" style="display: none;"><a href="admin.html" class="nav-link">Admin</a></li>
+                    <li><a href="profile.html" class="nav-link">Account</a></li>
+                    <li><a href="#" id="logoutBtn" class="nav-link">Logout</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-content">
+                <h1 class="hero-title">Timeless Style for Every Occasion</h1>
+                <p class="hero-subtitle">Discover our new collection of premium fashion designed for the modern
+                    individual.</p>
+                <a href="#shop" class="btn btn-primary">Shop Now</a>
+            </div>
+        </section>
+
+        <section id="shop" class="section">
+            <div class="container">
+                <div
+                    style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--spacing-lg);">
+                    <h2 class="section-title" style="margin-bottom:0;">Men's Premium Collection</h2>
+                    <button type="button" id="refreshShopBtn" class="btn"
+                        style="background:#eee; font-size:0.85rem; padding:8px 16px;"> Refresh Shop</button>
+                </div>
+
+                <div class="search-container">
+                    <input type="text" id="productSearch" placeholder="🔍 Search for Men's Shirts, Jackets, Chinos...">
+                </div>
+
+                <div class="category-filter-bar">
+                    <button class="category-btn active" data-category="all">All</button>
+                    <button class="category-btn" data-category="men">Men</button>
+                    <button class="category-btn" data-category="women">Women</button>
+                    <button class="category-btn" data-category="kids">Kids</button>
+                    <button class="category-btn" data-category="accessories">Accessories</button>
+                </div>
+
+                <div id="empty-state-msg" style="display: none; text-align: center; padding: 60px;">
+                    <p>No products found matching this category.</p>
+                </div>
+
+                <div class="product-grid">
+                    <!-- Products loaded by script -->
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section bg-light">
+            <div class="container">
+                <h2 class="section-title">Our Story</h2>
+                <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+                    <p style="font-size: 1.1rem; line-height: 1.8;">Arbuda Fashion brings you the finest selection of
+                        traditional and contemporary apparel. Founded with a passion for quality and design, we strive
+                        to make luxury fashion accessible to everyone. Our collections are curated with care to ensure
+                        you look your best at every moment.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="container">
+                <h2 class="section-title">Contact Us</h2>
+                <div style="text-align: center; font-size: 1.1rem;">
+                    <p>G-52, Shukan Plaza, Vadgam, Gujarat 385410</p>
+                    <p style="margin: 10px 0;">Phone: +91 23456 78901</p>
+                    <p>Email: contact@arbudafashion.com</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Purchase Modal -->
+    <div id="purchaseModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 style="text-align: center; margin-bottom: 25px; font-family: var(--font-heading);">Complete Purchase
+            </h2>
+            <div id="modalProductInfo"
+                style="background: #f9f9f9; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
+                <!-- Injected via script -->
+            </div>
+
+            <form id="purchaseForm">
+                <div class="form-group">
+                    <label>Quantity</label>
+                    <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+                </div>
+                <div class="form-group">
+                    <label>Size</label>
+                    <select id="size" name="size" required>
+                        <option value="S">Small</option>
+                        <option value="M" selected>Medium</option>
+                        <option value="L">Large</option>
+                        <option value="XL">Extra Large</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="customerName" name="customerName" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="customerEmail" name="customerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" id="customerPhone" name="customerPhone" required>
+                </div>
+                <div class="form-group">
+                    <label>Delivery Address</label>
+                    <textarea id="customerAddress" name="customerAddress" rows="3" required></textarea>
+                </div>
+
+                <div class="total-price">
+                    Total Amount: ₹<span id="totalPrice">0</span>
+                </div>
+
+                <button type="submit" class="btn btn-primary"
+                    style="width: 100%; padding: 15px; font-size: 1.1rem;">Confirm Order</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="social-links">
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+            </div>
+            <p>&copy; 2024 Arbuda Fashion. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>

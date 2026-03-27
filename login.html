@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Arbuda Fashion</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">Arbuda Fashion</a>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="signup.html" class="nav-link">Sign Up</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="section auth-section">
+            <div class="container auth-container">
+                <div class="auth-card">
+                    <h2 class="auth-title">Welcome Back</h2>
+
+                    <div class="login-tabs" style="display:flex; gap:10px; margin-bottom:20px; justify-content:center;">
+                        <button id="tabUsername" class="btn btn-sm active"
+                            style="font-size:0.8rem; padding:8px 15px;">Username Login</button>
+                        <button id="tabEmail" class="btn btn-sm" style="font-size:0.8rem; padding:8px 15px;">Email
+                            Login</button>
+                    </div>
+
+                    <!-- ── Option 1: Username + Password ── -->
+                    <form id="usernameLoginForm" class="auth-form">
+                        <div class="form-group">
+                            <label for="loginUsername">Username</label>
+                            <input type="text" id="loginUsername" name="username" placeholder="Enter your username"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="usernamePassword">Password</label>
+                            <input type="password" id="usernamePassword" name="password"
+                                placeholder="Enter your password" required>
+                        </div>
+                        <button type="submit" id="usernameLoginBtn" class="btn btn-primary btn-block">Login</button>
+                        <p style="text-align:center; margin-top:12px;">
+                            <a href="#" id="forgotPwdLink1"
+                                style="color:#6366f1; font-size:0.85rem; text-decoration:none;">Forgot Password?</a>
+                        </p>
+                    </form>
+
+                    <!-- ── Option 2: Email + Password ── -->
+                    <form id="emailLoginForm" class="auth-form" style="display:none;">
+                        <div class="form-group">
+                            <label for="loginEmail">Email Address</label>
+                            <input type="email" id="loginEmail" name="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="emailPassword">Password</label>
+                            <input type="password" id="emailPassword" name="password" placeholder="Enter your password"
+                                required>
+                        </div>
+                        <button type="submit" id="emailLoginBtn" class="btn btn-primary btn-block">Login</button>
+                        <p style="text-align:center; margin-top:12px;">
+                            <a href="#" id="forgotPwdLink2"
+                                style="color:#6366f1; font-size:0.85rem; text-decoration:none;">Forgot Password?</a>
+                        </p>
+                    </form>
+
+                    <!-- ── Option 3: OTP Login (Forgot Password) ── -->
+                    <div id="otpSection" style="display:none;">
+                        <div style="text-align:center; margin-bottom:18px;">
+                            <span style="font-size:2rem;">🔐</span>
+                            <h3 style="margin:8px 0 4px; font-size:1.1rem; color:#111;">Login with Verification Code
+                            </h3>
+                            <p style="color:#6b7280; font-size:0.85rem;">We'll send a 6-digit code to your email</p>
+                        </div>
+
+                        <!-- Step 1: Enter email & request OTP -->
+                        <div id="otpStep1">
+                            <div class="form-group">
+                                <label for="otpEmail">Your Registered Email</label>
+                                <input type="email" id="otpEmail" placeholder="Enter your email address" required>
+                            </div>
+                            <button type="button" id="sendOtpBtn" class="btn btn-primary btn-block">Send Verification
+                                Code</button>
+                        </div>
+
+                        <!-- Step 2: Enter OTP code -->
+                        <div id="otpStep2" style="display:none;">
+                            <p style="text-align:center; color:#059669; font-size:0.85rem; margin-bottom:14px;"
+                                id="otpSentMsg">
+                                ✅ Code sent! Check your email inbox.
+                            </p>
+                            <div class="form-group">
+                                <label for="otpCode">Enter 6-Digit Code</label>
+                                <input type="text" id="otpCode" placeholder="Enter verification code" maxlength="6"
+                                    style="text-align:center; font-size:1.4rem; letter-spacing:6px; font-weight:700;"
+                                    required>
+                            </div>
+                            <button type="button" id="verifyOtpBtn" class="btn btn-primary btn-block">Verify &
+                                Login</button>
+                            <p style="text-align:center; margin-top:10px;">
+                                <a href="#" id="resendOtpLink"
+                                    style="color:#6366f1; font-size:0.83rem; text-decoration:none;">Resend Code</a>
+                            </p>
+                        </div>
+
+                        <p style="text-align:center; margin-top:14px;">
+                            <a href="#" id="backToLoginLink"
+                                style="color:#6b7280; font-size:0.85rem; text-decoration:none;">← Back to Login</a>
+                        </p>
+                    </div>
+
+                    <p class="auth-footer">Don't have an account? <a href="signup.html">Sign Up</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>&copy; 2024 Arbuda Fashion. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="login.js"></script>
+</body>
+
+</html>
