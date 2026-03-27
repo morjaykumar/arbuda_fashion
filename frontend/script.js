@@ -1,6 +1,6 @@
 // ─── Global Configuration ─────────────────────────────────────────────────────
 window.API_BASE_URL = window.location.protocol === 'file:'
-    ? 'http://localhost:5050/api'
+    ? 'https://arbuda-fashion.onrender.com/api'
     : '/api';
 
 // ─── Run on every page load ───────────────────────────────────────────────────

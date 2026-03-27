@@ -1,6 +1,6 @@
 const API_BASE_URL = (window.location.origin.startsWith('http'))
     ? '/api'
-    : 'http://localhost:5050/api';
+    : 'https://arbuda-fashion.onrender.com/api';
 
 async function loginWithCredentials(credentials) {
     try {

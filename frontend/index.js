@@ -4,7 +4,7 @@
 
 const API_BASE_URL = (window.location.protocol === 'http:' || window.location.protocol === 'https:')
     ? '/api'
-    : 'http://localhost:5050/api';
+    : 'https://arbuda-fashion.onrender.com/api';
 
 document.addEventListener('DOMContentLoaded', () => {
     // ─── State ────────────────────────────────────────────────────────────────
