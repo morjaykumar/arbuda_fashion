@@ -23,10 +23,17 @@ app.use((req, res, next) => {
 });
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI)
+const mongoUri = process.env.MONGODB_URI || process.env.MONGO_URI;
+
+if (!mongoUri) {
+    console.error('❌ ERROR: MongoDB connection string is missing. Set MONGODB_URI or MONGO_URI in your environment.');
+    process.exit(1);
+}
+
+mongoose.connect(mongoUri)
     .then(() => {
         console.log('✅ SUCCESS: Connected to MongoDB');
-        console.log(`📡 URI: ${process.env.MONGODB_URI}`);
+        console.log(`📡 URI: ${mongoUri}`);
     })
     .catch((err) => {
         console.error('❌ ERROR: Could not connect to MongoDB. Is MongoDB installed and running?');
