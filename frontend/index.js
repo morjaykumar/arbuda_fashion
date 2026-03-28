@@ -2,7 +2,12 @@
  * Index Page Logic — Product Display, Filtering & Purchase
  */
 
-const API_URL = 'https://arbuda-fashion.onrender.com';
+let API_URL;
+if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    API_URL = 'http://localhost:5000';
+} else {
+    API_URL = 'https://arbuda-fashion.onrender.com';
+}
 const API_BASE_URL = `${API_URL}/api`;
 
 document.addEventListener('DOMContentLoaded', () => {
