@@ -1,4 +1,4 @@
-const API_BASE_URL = window.API_BASE_URL || 'https://arbuda-fashion.onrender.com/api';
+const API_BASE_URL = window.API_BASE_URL || 'http://localhost:5050/api';
 
 document.addEventListener('DOMContentLoaded', () => {
 
