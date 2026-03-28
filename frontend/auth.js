@@ -1,6 +1,5 @@
-const API_BASE_URL = (window.location.origin.startsWith('http'))
-    ? '/api'
-    : 'https://arbuda-fashion.onrender.com/api';
+const API_URL = 'https://arbuda-fashion.onrender.com';
+const API_BASE_URL = `${API_URL}/api`;
 
 async function loginWithCredentials(credentials) {
     try {

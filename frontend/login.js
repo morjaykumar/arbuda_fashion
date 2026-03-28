@@ -3,7 +3,8 @@
  * Handles: Tab switching + Username login + Email login + OTP (Forgot Password) login
  */
 
-const API_BASE = window.location.protocol === 'file:' ? 'https://arbuda-fashion.onrender.com/api' : '/api';
+const API_URL = 'https://arbuda-fashion.onrender.com';
+const API_BASE = `${API_URL}/api`;
 
 document.addEventListener('DOMContentLoaded', () => {
     redirectIfLoggedIn();

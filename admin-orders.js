@@ -1,8 +1,8 @@
-const API_BASE_URL = window.API_BASE_URL || '/api';
+const API_BASE_URL = window.API_BASE_URL || 'https://arbuda-fashion.onrender.com/api';
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    console.log('🚀 Admin Orders Page Initialized');
+    console.log(' Admin Orders Page Initialized');
 
     // ───── Simple Admin Check (Frontend Only) ─────
     let user = null;

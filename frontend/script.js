@@ -1,7 +1,5 @@
 // ─── Global Configuration ─────────────────────────────────────────────────────
-window.API_BASE_URL = window.location.protocol === 'file:'
-    ? 'https://arbuda-fashion.onrender.com/api'
-    : '/api';
+window.API_BASE_URL = 'https://arbuda-fashion.onrender.com/api';
 
 // ─── Run on every page load ───────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {

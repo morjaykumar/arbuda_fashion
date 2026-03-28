@@ -2,7 +2,8 @@
  * Profile Page Logic - Full User Features
  */
 
-const API_BASE_URL = '/api';
+const API_URL = 'https://arbuda-fashion.onrender.com';
+const API_BASE_URL = `${API_URL}/api`;
 
 document.addEventListener('DOMContentLoaded', () => {
     let user = null;

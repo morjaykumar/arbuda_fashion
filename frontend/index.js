@@ -2,9 +2,8 @@
  * Index Page Logic — Product Display, Filtering & Purchase
  */
 
-const API_BASE_URL = (window.location.protocol === 'http:' || window.location.protocol === 'https:')
-    ? '/api'
-    : 'https://arbuda-fashion.onrender.com/api';
+const API_URL = 'https://arbuda-fashion.onrender.com';
+const API_BASE_URL = `${API_URL}/api`;
 
 document.addEventListener('DOMContentLoaded', () => {
     // ─── State ────────────────────────────────────────────────────────────────
